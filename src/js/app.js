@@ -1,15 +1,42 @@
+const arrRandomNum = [];
+const arrBeforeCellId = [];
+const arrCellId = ['one', 'two', 'three', 'four'];
+
 function randomInteger(min, max) {
   const rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 }
 
-const arrRandomNum = [];
-const arrBeforeCellId = [];
-const arrCellId = ['one', 'two', 'three', 'four'];
+function checkUniqueRandNum(randomNum) {
+  if (arrRandomNum.length !== 0) {
+    // создаем пустой div и обзываем
+    const divEl = document.createElement('div');
+    divEl.setAttribute('id', arrBeforeCellId.shift());
+
+    // создаем ссылку на предыдущего гоблина, чтобы заменить его пустым div
+    const BeforeGoblinPos = document.getElementById('goblin');
+    const parentGoblinPos = BeforeGoblinPos.parentNode;
+    parentGoblinPos.replaceChild(divEl, BeforeGoblinPos);
+
+    if (randomNum === arrRandomNum[0]) {
+      let newRandomNum = randomInteger(0, 3);
+      if (randomNum === newRandomNum) {
+        newRandomNum = randomInteger(0, 3);
+        return newRandomNum;
+      }
+      return newRandomNum;
+    }
+    return randomNum;
+  }
+  return randomNum;
+}
 
 function goGame() {
-  const randomNum = randomInteger(0, 3);
+  const randomNum = checkUniqueRandNum(randomInteger(0, 3));
   arrRandomNum.push(randomNum);
+  if (arrRandomNum.length === 2) {
+    arrRandomNum.shift();
+  }
   arrBeforeCellId.push(arrCellId[randomNum]);
 
 
@@ -39,6 +66,5 @@ function goGame() {
   parentCell.replaceChild(divGoblinEl, positionCell);
 }
 
-// goGame();
 
-// setInterval(goGame, 1000);
+setInterval(goGame, 2000);
