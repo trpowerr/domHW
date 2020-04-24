@@ -3,31 +3,42 @@ function randomInteger(min, max) {
   return Math.floor(rand);
 }
 
+const arrRandomNum = [];
+const arrBeforeCellId = [];
+const arrCellId = ['one', 'two', 'three', 'four'];
+
 function goGame() {
   const randomNum = randomInteger(0, 3);
-  const arrCellId = ['one', 'two', 'three', 'four'];
-  // const divEl = document.createElement('div');
+  arrRandomNum.push(randomNum);
+  arrBeforeCellId.push(arrCellId[randomNum]);
 
-  // создаем div и обзываем
-  const divEl = document.createElement('div');
-  divEl.setAttribute('id', 'goblin');
 
-  // создаем картинку и помещаем в div
+  // гоблин создаем div и обзываем
+  const divGoblinEl = document.createElement('div');
+  divGoblinEl.setAttribute('id', 'goblin');
+
+  // гоблин создаем картинку и помещаем в div
   const imgEl = document.createElement('img');
   imgEl.src = 'goblin.png';
-  divEl.appendChild(imgEl);
+  divGoblinEl.appendChild(imgEl);
 
-  // создаем ссылку на существующий элемент который будем заменять
+  if (arrRandomNum.length > 1) {
+    // создаем пустой div и обзываем
+    const divEl = document.createElement('div');
+    divEl.setAttribute('id', arrBeforeCellId.shift());
+
+    // создаем ссылку на предыдущего гоблина, чтобы заменить его пустым div
+    const BeforeGoblinPos = document.getElementById('goblin');
+    const parentGoblinPos = BeforeGoblinPos.parentNode;
+    parentGoblinPos.replaceChild(divEl, BeforeGoblinPos);
+  }
+
+  // гоблин создаем ссылку на существующий элемент который будем заменять
   const positionCell = document.getElementById(arrCellId[randomNum]);
-  // console.log(positionCell, randomNum);
   const parentCell = positionCell.parentNode;
-  // console.log(parentCell);
-  parentCell.replaceChild(divEl, positionCell);
-
-  // parentCell.insertBefore(imgEl, positionCell);
-  // parentCell.appendChild(imgEl);
+  parentCell.replaceChild(divGoblinEl, positionCell);
 }
 
-goGame();
+// goGame();
 
-// setInterval(goGame, 2000);
+// setInterval(goGame, 1000);
