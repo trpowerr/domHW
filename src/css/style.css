@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  background-color: aqua;
+}
+.container {
+  width: 1000px;
+  height: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-image: url(https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+}
+.field {
+  display: flex;
+  flex-wrap: wrap;
+  height: 400px;
+  width: 400px;
+  background-color: aqua;
+}
+.field div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 196px;
+  width: 196px;
+  border: 2px solid gold;
+}
