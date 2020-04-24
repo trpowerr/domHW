@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/j0jbuftqmcvuxbu7?svg=true)](https://ci.appveyor.com/project/trpowerr/domhw)
