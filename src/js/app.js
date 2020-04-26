@@ -7,7 +7,15 @@ function randomInteger(min, max) {
   return Math.floor(rand);
 }
 
-function checkUniqueRandNum(randomNum) {
+function getNextPosition() {
+  let nextPosition = null;
+  do {
+    nextPosition = randomInteger(0, 3);
+  } while (arrRandomNum[0] === nextPosition);
+  return nextPosition;
+}
+
+function checkUniqueRandNum() {
   if (arrRandomNum.length !== 0) {
     // создаем пустой div и обзываем
     const divEl = document.createElement('div');
@@ -18,21 +26,14 @@ function checkUniqueRandNum(randomNum) {
     const parentGoblinPos = BeforeGoblinPos.parentNode;
     parentGoblinPos.replaceChild(divEl, BeforeGoblinPos);
 
-    if (randomNum === arrRandomNum[0]) {
-      let newRandomNum = randomInteger(0, 3);
-      if (randomNum === newRandomNum) {
-        newRandomNum = randomInteger(0, 3);
-        return newRandomNum;
-      }
-      return newRandomNum;
-    }
-    return randomNum;
+    return getNextPosition();
   }
-  return randomNum;
+  return randomInteger(0, 3);
 }
 
 function goGame() {
-  const randomNum = checkUniqueRandNum(randomInteger(0, 3));
+  const randomNum = checkUniqueRandNum();
+  console.log(randomNum);
   arrRandomNum.push(randomNum);
   if (arrRandomNum.length === 2) {
     arrRandomNum.shift();
@@ -65,6 +66,5 @@ function goGame() {
   const parentCell = positionCell.parentNode;
   parentCell.replaceChild(divGoblinEl, positionCell);
 }
-
 
 setInterval(goGame, 2000);
