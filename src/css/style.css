@@ -28,3 +28,6 @@ body {
   width: 196px;
   border: 2px solid gold;
 }
+#final img {
+  height: 400px;
+}
